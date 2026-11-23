@@ -1,2 +1,47 @@
-🏃 Running Pace Calculator
-Calculate the pace you need to reach your target time
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Running Pace Calculator</title>
+</head>
+
+<body>
+
+    <h1>🏃 Running Pace Calculator</h1>
+
+    <label>Distance in km:</label>
+    <input type="number" id="distance" value="21.1" step="0.1">
+
+    <br><br>
+
+    <label>Target time:</label>
+    <input type="number" id="hours" value="1" min="0"> hours
+    <input type="number" id="minutes" value="35" min="0" max="59"> minutes
+
+    <br><br>
+
+    <button onclick="calculatePace()">Calculate pace</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculatePace() {
+
+            const distance = Number(document.getElementById("distance").value);
+            const hours = Number(document.getElementById("hours").value);
+            const minutes = Number(document.getElementById("minutes").value);
+
+            const totalMinutes = (hours * 60) + minutes;
+            const pace = totalMinutes / distance;
+
+            const paceMinutes = Math.floor(pace);
+            const paceSeconds = Math.round((pace - paceMinutes) * 60);
+
+            document.getElementById("result").innerText =
+                "Required pace: " + paceMinutes + ":" +
+                paceSeconds.toString().padStart(2, "0") +
+                " min/km";
+        }
+    </script>
+
+</body>
+</html>
